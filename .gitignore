@@ -1,6 +1,6 @@
 dist
 package
-data
+data/handbook-json
 .DS_Store
 .env
 .slack/apps.dev.json
