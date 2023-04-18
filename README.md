@@ -18,4 +18,4 @@ Meet Mr. Carte. He is a friendly Slack bot, a helper with a mustasche. He enjoys
 - Reminder for Time reporting: Sends a reminder to the channel every Friday the last week of the month.
 
 ## Maintainer(s)
-Alexander Forrest / Cartina [Cartina web](https://www.cartina.se/) [@abulerforrest](https://www.github.com/abulerforrest)
+Alexander Forrest / Cartina [[Cartina web](https://www.cartina.se/)] [@abulerforrest](https://www.github.com/abulerforrest)
