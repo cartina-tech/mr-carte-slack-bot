@@ -1,5 +1,7 @@
 # Mr. Carte (Diem) Slack Bot
 
+![Mr. Carte profile img](https://raw.githubusercontent.com/cartina-tech/mr-carte-slack-bot/main/assets/Mr_Carte_Diem.png?token=GHSAT0AAAAAACBRY7YTN3VHLAVEKOB2SLDKZB6O7GQ)
+
 Meet Mr. Carte. He is a friendly Slack bot, a helper with a mustasche. He enjoys helping by providing asked for information, and he tries to cheer you up by telling jokes and by giving advice.
 
 ## Usage / Current features
