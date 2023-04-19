@@ -109,7 +109,7 @@ export const jokes = [
 
 // default greeting
 export const assistantGreeting =
-  "Jag heter *Mr. Carpe (Diem)*, Cartinas egna assistent. Se så, fråga mig vad du vill!";
+  "Jag heter *Mr. Carte (Diem)*, Cartinas egna assistent. Se så, fråga mig vad du vill!";
 
 // scheduled messages
 /* time report */
