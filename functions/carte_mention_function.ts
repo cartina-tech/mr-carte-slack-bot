@@ -19,6 +19,7 @@ import {
 import { extractWords, randomizeStringArr } from "../helpers.ts";
 import { getWeek } from "../api.ts";
 import { MentionFunctionDefinition } from "../definitions/carte_mention_definition.ts";
+import { msgLenghtLimit } from "../settings.ts";
 
 const randomJokes = randomizeStringArr(jokes);
 const randomTacoGif = randomizeStringArr(tacoGifs);
@@ -191,8 +192,13 @@ export default SlackFunction(
       }
     }
 
+    if (answer.length >= msgLenghtLimit) {
+      answer = `${answer.substring(0, msgLenghtLimit)}...`;
+    }
+
     const messageResponse = await client.chat.postMessage({
       channel: inputs.channel!,
+      "text": "Sending an answer with information!",
       blocks: [{
         "type": "section",
         "text": {
@@ -209,6 +215,10 @@ export default SlackFunction(
         ],
       }],
     });
+
+    console.log(answer);
+
+    console.log(messageResponse);
 
     if (messageResponse.error) {
       const error =

@@ -1,1 +1,11 @@
-{}
+{
+  "apps": {
+    "cartinateam": {
+      "name": "cartinateam",
+      "app_id": "A054N77JGJC",
+      "team_id": "T0LC1U7QX",
+      "IsDev": false
+    }
+  },
+  "default": "cartinateam"
+}
