@@ -104,7 +104,14 @@ export const jokes = [
   "Vet du varför Björn Borg inte får vara i en bokhandel?\n\n- Han tar för många gem.",
   "Det var två norrmän som var ute och fiskade. Den ena fick napp och drog upp den.\n\n- Nå.. hur ska vi döda den?\n\n- Jag vet, vi dränker den!!!!",
   "Två myggor åker på en moped. Plötsligt stannar de. Den som sitter bakom frågar den som kör:\n\n- Varför stannar du?\n\n- Jag fick en fluga i ögat.",
-  " Varför ramlar de där ungarna hela tiden?\n\n- De är ju trillingar!",
+  "Varför ramlar de där ungarna hela tiden?\n\n- De är ju trillingar!",
+  "Varför drunknade inte min mobil när jag kasta den i havet?\n\n- För den hade simkort.",
+  "Varför är det så svårt att ringa till pensionerade läkare? De har ingen mottagning.",
+  "Varför har man inte sjöjungfrur i Norrland? Det blir för kallt på fjällen.",
+  "Vad fick dig att börja jobba som elektriker?\n\n– Spänningen.",
+  "Jag såg en katt på gymmet idag. – Han körde spinning. :joy_cat:",
+  "Jag körde i diket och väntar på bogseringsbilen. – Kan knappt bärga mig.",
+  "Jag gjorde mig av med min dammsugare. – Den samlade ändå bara damm.",
 ];
 
 // default greeting
