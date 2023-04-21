@@ -5,4 +5,3 @@ data/handbook-json
 .env
 .slack/apps.dev.json
 .slack/apps.json
-
