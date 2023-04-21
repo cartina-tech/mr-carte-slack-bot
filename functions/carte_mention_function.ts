@@ -190,7 +190,7 @@ export default SlackFunction(
     } else if (
       searchText === "skoja" || searchText === "skämta"
     ) {
-      answer = await getResponses("", "", "", weekUrl).then((res) => res.jokes);
+      answer = await getResponses("", "", "", weekUrl).then((res) => res.fun);
     } else {
       if (searchText !== "") {
         if (fetchedRes === "") {
