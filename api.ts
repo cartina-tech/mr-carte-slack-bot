@@ -1,5 +1,6 @@
-export const getWeek = async () => {
-  const res = await fetch(`${Deno.env.get("WEEK_REST_API_URL")}`, {
+export const getWeek = async (weekUrl: string) => {
+  console.log(weekUrl);
+  const res = await fetch(weekUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

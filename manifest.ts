@@ -11,7 +11,7 @@ export default Manifest({
   icon: "assets/Mr_Carte_Diem.png",
   workflows: [MentionWorkflow, DataWorkflow, ScheduleWorkflow],
   datastores: [CartinaDatastore],
-  outgoingDomains: ["vecka.nu"],
+  outgoingDomains: ["hooks.slack.com", "vecka.nu"],
   botScopes: [
     "commands",
     "chat:write",

@@ -1,5 +1,4 @@
 import { SlackFunction } from "deno-slack-sdk/mod.ts";
-import "https://deno.land/std@0.145.0/dotenv/load.ts";
 
 import {
   DatastoreItem,
@@ -21,16 +20,11 @@ import { getWeek } from "../api.ts";
 import { MentionFunctionDefinition } from "../definitions/carte_mention_definition.ts";
 import { msgLenghtLimit } from "../settings.ts";
 
-const randomJokes = randomizeStringArr(jokes);
-const randomTacoGif = randomizeStringArr(tacoGifs);
-const randomSalutation = randomizeStringArr(salutations);
-const randomCongrats = randomizeStringArr(congrats);
-const randomWiseText = randomizeStringArr(wiseText);
-
 const getResponses = async (
   _user?: string | undefined,
   _userText?: string | undefined,
   _findings?: string | undefined,
+  weekUrl?: string,
 ): Promise<Record<string, string>> => {
   return {
     help:
@@ -49,15 +43,22 @@ const getResponses = async (
       `${randomCongrats}, <@${_user}>! :thumbsup: :sparkles: \n\n>Baserat på \`${_userText}\`, undrade du kanske om det här?\n\n${_findings}`,
     greeting:
       `${randomSalutation}, <@${_user}>! :wave: ${assistantGreeting} \n\n>`,
-    week: `${
-      Deno.env.get("WEEK_REST_API_URL")
-    } säger att veckans nummer är ${await getWeek().then(
-      (resp) => {
-        return resp;
-      },
-    )}`,
+    week: `${weekUrl} säger att veckans nummer är ${await getWeek(
+      `${weekUrl}`,
+    )
+      .then(
+        (resp) => {
+          return resp;
+        },
+      )}`,
   };
 };
+
+const randomJokes = randomizeStringArr(jokes);
+const randomTacoGif = randomizeStringArr(tacoGifs);
+const randomSalutation = randomizeStringArr(salutations);
+const randomCongrats = randomizeStringArr(congrats);
+const randomWiseText = randomizeStringArr(wiseText);
 
 const buttonCommonProps = { type: "button", style: "primary" };
 
@@ -87,8 +88,11 @@ const buttonWeek = {
 
 export default SlackFunction(
   MentionFunctionDefinition,
-  async ({ inputs, client }) => {
+  async ({ inputs, client, env }) => {
     const { user } = inputs;
+
+    const datastoreId = env["DATASTORE_ID"];
+    const weekUrl = env["WEEK_REST_API_URL"];
 
     const findMessage = await client.conversations.history({
       channel: inputs.channel,
@@ -98,14 +102,20 @@ export default SlackFunction(
     });
 
     let usersTextToBot: string = findMessage["messages"][0].text || "";
-    usersTextToBot = usersTextToBot.replace("<@U04UMAX8EM8>", "").trim();
-    const searchText = usersTextToBot.toLocaleLowerCase();
+
+    usersTextToBot = usersTextToBot.split(" ")[1];
+    if (usersTextToBot === undefined) {
+      usersTextToBot = "";
+    } else {
+      usersTextToBot = usersTextToBot.toLocaleLowerCase().trim();
+    }
+    const searchText: string = usersTextToBot;
 
     const fetchHandbookData = async (): Promise<
       DatastoreQueryResponse<DatastoreSchema>
     > => {
       return await client.apps.datastore.query({
-        datastore: Deno.env.get("DATASTORE_ID") || "",
+        datastore: datastoreId,
       });
     };
 
@@ -158,37 +168,45 @@ export default SlackFunction(
 
     const conditionWeek = searchText.includes("week") ||
       searchText.includes("vecka");
-
     let answer = "";
     if (conditionIsAnEmoji) {
       if (conditionDisappointed) {
-        answer = await getResponses().then((res) => res.disappointed);
+        answer = await getResponses("", "", "", weekUrl).then((res) =>
+          res.disappointed
+        );
       } else {
-        answer = await getResponses().then((res) => res.noEmojis);
+        answer = await getResponses("", "", "", weekUrl).then((res) =>
+          res.noEmojis
+        );
       }
     } else if (conditionTacoParty) {
-      answer = await getResponses().then((res) => res.tacoparty);
+      answer = await getResponses("", "", "", weekUrl).then((res) =>
+        res.tacoparty
+      );
     } else if (conditionNeedsHelp) {
-      answer = await getResponses().then((res) => res.help);
+      answer = await getResponses("", "", "", weekUrl).then((res) => res.help);
     } else if (conditionWeek) {
-      answer = await getResponses().then((res) => res.week);
+      answer = await getResponses("", "", "", weekUrl).then((res) => res.week);
     } else if (
       searchText === "skoja" || searchText === "skämta"
     ) {
-      answer = await getResponses().then((res) => res.jokes);
+      answer = await getResponses("", "", "", weekUrl).then((res) => res.jokes);
     } else {
       if (searchText !== "") {
         if (fetchedRes === "") {
-          answer = await getResponses(user, usersTextToBot).then((res) =>
-            res.notFound
-          );
-        } else {
-          answer = await getResponses(user, usersTextToBot, fetchedRes).then((
+          answer = await getResponses(user, usersTextToBot, "", weekUrl).then((
             res,
-          ) => res.found);
+          ) => res.notFound);
+        } else {
+          answer = await getResponses(user, usersTextToBot, fetchedRes, weekUrl)
+            .then((
+              res,
+            ) => res.found);
         }
       } else {
-        answer = await getResponses(user).then((res) => res.greeting);
+        answer = await getResponses(user, "", "", weekUrl).then((res) =>
+          res.greeting
+        );
       }
     }
 
@@ -216,10 +234,6 @@ export default SlackFunction(
       }],
     });
 
-    console.log(answer);
-
-    console.log(messageResponse);
-
     if (messageResponse.error) {
       const error =
         `Failed to post a message with buttons ;-( - ${messageResponse.error}`;
@@ -229,22 +243,32 @@ export default SlackFunction(
   },
 ).addBlockActionsHandler(
   ["help_request", "fun_request", "zen_request", "week_request"],
-  async ({ body, action, inputs, client }) => {
+  async ({ body, action, inputs, client, env }) => {
     let replyText = "";
+
+    const weekUrl = env["WEEK_REST_API_URL"];
 
     switch (action.action_id) {
       case "help_request":
-        replyText = await getResponses().then((res) => res.help);
+        replyText = await getResponses("", "", "", weekUrl).then((res) =>
+          res.help
+        );
         break;
       case "fun_request":
-        replyText = await getResponses().then((res) => res.fun);
+        replyText = await getResponses("", "", "", weekUrl).then((res) =>
+          res.fun
+        );
         break;
       case "zen_request":
-        replyText = await getResponses().then((res) => res.zen);
+        replyText = await getResponses("", "", "", weekUrl).then((res) =>
+          res.zen
+        );
         break;
       case "week_request":
         {
-          replyText = await getResponses().then((res) => res.week);
+          replyText = await getResponses("", "", "", weekUrl).then((res) =>
+            res.week
+          );
         }
         break;
     }

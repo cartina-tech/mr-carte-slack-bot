@@ -1,5 +1,4 @@
 import { SlackFunction } from "deno-slack-sdk/mod.ts";
-import "https://deno.land/std@0.145.0/dotenv/load.ts";
 import { InsertIntoDatastoreFunctionDefinition } from "../definitions/insert_into_datastore_definition.ts";
 
 export default SlackFunction(
@@ -8,7 +7,7 @@ export default SlackFunction(
     const uuid = crypto.randomUUID();
 
     const response = await client.apps.datastore.put({
-      datastore: Deno.env.get("DATASTORE_ID") || "",
+      datastore: "cartina_handbook",
       item: {
         "id": uuid,
         "words": "",

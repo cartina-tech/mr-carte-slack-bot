@@ -117,10 +117,3 @@ export const jokes = [
 // default greeting
 export const assistantGreeting =
   "Jag heter *Mr. Carte (Diem)*, Cartinas egna assistent. Se så, fråga mig vad du vill!";
-
-// scheduled messages
-/* time report */
-export const timeReportNotice =
-  `>Vill bara vänligen påminna att det är dags att tidsrapportera! Klicka in och fyll i tidrapport här <${
-    Deno.env.get("TICTAC_LOGIN_URL")
-  }|Tic Tac> :clock7: :memo:`;

@@ -1,7 +1,4 @@
-import {
-  DefineFunction,
-  Schema,
-} from "https://deno.land/x/deno_slack_sdk@2.0.1/mod.ts";
+import { DefineFunction, Schema } from "deno-slack-sdk/mod.ts";
 
 export const ScheduledTRFunctionDefinition = DefineFunction({
   callback_id: "carte_scheduled_tr_function",

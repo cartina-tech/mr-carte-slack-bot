@@ -1,6 +1,6 @@
 import { Trigger } from "deno-slack-api/types.ts";
 import MentionWorkflow from "../workflows/carte_mention_workflow.ts";
-import "https://deno.land/std@0.145.0/dotenv/load.ts";
+import "https://deno.land/std@0.184.0/dotenv/load.ts";
 
 const mentionTrigger: Trigger<typeof MentionWorkflow.definition> = {
   type: "event",
@@ -9,7 +9,7 @@ const mentionTrigger: Trigger<typeof MentionWorkflow.definition> = {
   workflow: "#/workflows/carte_mention_workflow",
   event: {
     event_type: "slack#/events/app_mentioned",
-    channel_ids: [Deno.env.get("CHANNEL_ID") as string],
+    channel_ids: ["{{data.channel_id}}"],
   },
   inputs: {
     user: {

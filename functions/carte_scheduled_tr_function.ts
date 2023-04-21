@@ -1,12 +1,13 @@
 import { SlackFunction } from "deno-slack-sdk/mod.ts";
-import "https://deno.land/std@0.145.0/dotenv/load.ts";
 import { ScheduledTRFunctionDefinition } from "../definitions/carte_scheduled_tr_definition.ts";
-import { timeReportNotice } from "../data/store.ts";
 
 export default SlackFunction(
   ScheduledTRFunctionDefinition,
-  () => {
-    const message = timeReportNotice;
+  ({ env }) => {
+    const message =
+      `>Vill bara vänligen påminna att det är dags att tidsrapportera! Klicka in och fyll i tidrapport här <${
+        env["TICTAC_LOGIN_URL"]
+      }|Tic Tac> :clock7: :memo:`;
     return { outputs: { message } };
   },
 );

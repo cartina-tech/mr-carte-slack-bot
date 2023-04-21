@@ -1,8 +1,7 @@
 import { DefineDatastore, Schema } from "deno-slack-sdk/mod.ts";
-import "https://deno.land/std@0.145.0/dotenv/load.ts";
 
 export const CartinaDatastore = DefineDatastore({
-  name: Deno.env.get("DATASTORE_ID") || "",
+  name: "cartina_handbook",
   primary_key: "id",
   attributes: {
     id: { type: Schema.types.string },
