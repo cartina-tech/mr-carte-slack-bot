@@ -8,7 +8,7 @@ const scheduledTrigger: Trigger<typeof ScheduleWorkflow.definition> = {
   workflow: "#/workflows/carte_scheduled_tr_workflow",
   inputs: {},
   schedule: {
-    start_time: "2023-04-21T00:13:00Z",
+    start_time: "2023-04-21T09:45:00Z",
     timezone: "europe/stockholm",
     frequency: {
       type: "monthly",

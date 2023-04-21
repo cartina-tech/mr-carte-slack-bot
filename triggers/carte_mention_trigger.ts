@@ -9,7 +9,7 @@ const mentionTrigger: Trigger<typeof MentionWorkflow.definition> = {
   workflow: "#/workflows/carte_mention_workflow",
   event: {
     event_type: "slack#/events/app_mentioned",
-    channel_ids: ["{{data.channel_id}}"],
+    channel_ids: [Deno.env.get("CHANNEL_ID") || ""],
   },
   inputs: {
     user: {

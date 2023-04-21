@@ -1,8 +1,5 @@
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
 import { ScheduledTRFunctionDefinition } from "../definitions/carte_scheduled_tr_definition.ts";
-import "https://deno.land/std@0.184.0/dotenv/load.ts";
-
-const chan = Deno.env.get("CHANNEL_ID");
 
 const ScheduleWorkflow = DefineWorkflow({
   callback_id: "carte_scheduled_tr_workflow",
@@ -27,6 +24,8 @@ const scheduledFunctionStep = ScheduleWorkflow.addStep(
   ScheduledTRFunctionDefinition,
   {},
 );
+
+const chan = ScheduleWorkflow.inputs.channel;
 
 ScheduleWorkflow.addStep(Schema.slack.functions.SendMessage, {
   channel_id: chan,
