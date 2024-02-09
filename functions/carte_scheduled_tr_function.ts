@@ -5,7 +5,7 @@ export default SlackFunction(
   ScheduledTRFunctionDefinition,
   ({ env }) => {
     const message =
-      `>Vill bara vänligen påminna att det är dags att tidsrapportera! Klicka in och fyll i tidrapport här <${
+      `>Vill bara vänligen påminna att det är fredag och dags att tidsrapportera för veckan! Gå in och fyll i din tidrapport i <${
         env["TICTAC_LOGIN_URL"]
       }|Tic Tac> :clock7: :memo:`;
     return { outputs: { message } };

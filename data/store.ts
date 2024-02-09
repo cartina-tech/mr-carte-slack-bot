@@ -8,6 +8,19 @@ export const tacoGifs = [
   "https://giphy.com/gifs/dancing-food-taco-3o6ZtkmiFtpBvii6uQ",
   "https://giphy.com/gifs/tacobell-taco-tacos-bell-l0NwCudcnztLselXO",
   "https://giphy.com/gifs/times-bell-orientation-7if9hGmIHjrTG",
+  "https://giphy.com/gifs/pixel-taco-art-EsDCYBUQM0KlO",
+  "https://giphy.com/gifs/texas-taco-tacos-xT4uQulxzV39haRFjG",
+  "https://giphy.com/gifs/pixel-taco-art-EsDCYBUQM0KlO",
+  "https://giphy.com/gifs/basketball-nba-13VJu6tRPDBF72",
+  "https://giphy.com/gifs/times-bell-orientation-7if9hGmIHjrTG",
+  "https://giphy.com/gifs/taco-bell-tacos-OGxUX25qMNyRG",
+  "https://giphy.com/gifs/fail-mexican-sIwrx2YStbn7W",
+  "https://giphy.com/gifs/shakingfoodgifs-taco-shaking-food-3JgtnXdRhSflK",
+  "https://giphy.com/gifs/IDLTpC8P98pzO",
+  "https://giphy.com/gifs/am85-3oKIPay5G3yCBXo3le",
+  "https://giphy.com/gifs/taco-remix-mexico-fVAerA7bPKXRu",
+  "https://giphy.com/gifs/cat-space-5HSYaZTcRpYnS",
+  "https://giphy.com/gifs/TacoBellBrasil-taco-bell-brasil-6w7wTqhdSSoNt2dG3C",
 ];
 
 export const wiseText = [
@@ -73,6 +86,15 @@ export const congrats = [
   "Aha!",
 ];
 
+export const jokeReplies = [
+  `>Ok då.. ska se om jag kan dra ett underhållande skämt:\n\n`,
+  `>Tar fram min inre Göteborgare... här kommer en:\n\n`,
+  `>Kliar mig i mustachen, här kommer ett skämt:\n\n`,
+  `>Nu ska vi se....:\n\n`,
+  `>Jag är här för att underhålla.. har du hört denna?:\n\n`,
+  `>Håll i hatten:\n\n`,
+];
+
 export const jokes = [
   "Två rika män stod och skröt om vem som var rikast.\n\n- Jag är så rik att jag kan köpa hela jordklotet!\n\n- Nej det kan du inte, för jag säljer det inte.",
   "- Min katt spelar schack.\n\n- Det måste vara en intelligent katt.\n\n- Nej, inte särskilt. Jag vinner alltid.",
@@ -116,4 +138,4 @@ export const jokes = [
 
 // default greeting
 export const assistantGreeting =
-  "Jag heter *Mr. Carte (Diem)*, Cartinas egna assistent. Se så, fråga mig vad du vill!";
+  "Jag heter *Mr. Carte (Diem)*, Cartina's egna assistent.";

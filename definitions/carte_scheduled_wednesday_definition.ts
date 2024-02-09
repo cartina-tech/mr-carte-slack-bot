@@ -1,11 +1,12 @@
 import { DefineFunction, Schema } from "deno-slack-sdk/mod.ts";
 
 export const ScheduledTRFunctionDefinition = DefineFunction({
-  callback_id: "carte_scheduled_tr_function",
-  title: "Send a scheduled message to a channel reminding about time reporting",
+  callback_id: "carte_scheduled_wednesday_function",
+  title:
+    "Send a scheduled message to a channel reminding about Friday breakfast",
   description:
-    "Mr. Carte sends a scheduled message to a channel about time reporting",
-  source_file: "functions/carte_scheduled_tr_function.ts",
+    "Mr. Carte sends a scheduled message to a channel about Friday breakfast",
+  source_file: "functions/carte_scheduled_wednesday_function.ts",
   input_parameters: {
     properties: {
       user: {

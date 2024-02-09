@@ -5,7 +5,7 @@ export const CartinaDatastore = DefineDatastore({
   primary_key: "id",
   attributes: {
     id: { type: Schema.types.string },
-    words: { type: Schema.types.string },
+    terms: { type: Schema.types.string },
     content: { type: Schema.types.string },
   },
 });

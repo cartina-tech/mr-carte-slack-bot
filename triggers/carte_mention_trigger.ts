@@ -4,8 +4,8 @@ import "https://deno.land/std@0.184.0/dotenv/load.ts";
 
 const mentionTrigger: Trigger<typeof MentionWorkflow.definition> = {
   type: "event",
-  name: "Gets triggered if someone mentions Mr. Carte Bot.",
-  description: "Do some action if someone mentions the Carte bot/app",
+  name: "Is triggered if someone mentions Mr. Carte Bot.",
+  description: "Make some action if someone mentions the Carte bot/app",
   workflow: "#/workflows/carte_mention_workflow",
   event: {
     event_type: "slack#/events/app_mentioned",

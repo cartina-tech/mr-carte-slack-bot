@@ -1,5 +1,5 @@
 import { SlackFunction } from "deno-slack-sdk/mod.ts";
-import { InsertIntoDatastoreFunctionDefinition } from "../definitions/insert_into_datastore_definition.ts";
+import { InsertIntoDatastoreFunctionDefinition } from "../definitions/carte_insert_into_datastore_definition.ts";
 
 export default SlackFunction(
   InsertIntoDatastoreFunctionDefinition,
@@ -10,7 +10,7 @@ export default SlackFunction(
       datastore: "cartina_handbook",
       item: {
         "id": uuid,
-        "words": "",
+        "terms": "",
         "content": "",
       },
     });

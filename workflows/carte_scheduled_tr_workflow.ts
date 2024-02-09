@@ -4,12 +4,14 @@ import { ScheduledTRFunctionDefinition } from "../definitions/carte_scheduled_tr
 const ScheduleWorkflow = DefineWorkflow({
   callback_id: "carte_scheduled_tr_workflow",
   title: "Scheduled workflow",
-  description:
-    "Output a message with information to the user mentioning the Carte bot/app",
+  description: "Output a message with information regarding time reporting.",
   input_parameters: {
     properties: {
       channel: {
         type: Schema.slack.types.channel_id,
+      },
+      user: {
+        type: Schema.slack.types.user_id,
       },
     },
     required: [],
@@ -25,10 +27,8 @@ const scheduledFunctionStep = ScheduleWorkflow.addStep(
   {},
 );
 
-const chan = ScheduleWorkflow.inputs.channel;
-
 ScheduleWorkflow.addStep(Schema.slack.functions.SendMessage, {
-  channel_id: chan,
+  channel_id: ScheduleWorkflow.inputs.channel,
   message: scheduledFunctionStep.outputs.message,
 });
 
